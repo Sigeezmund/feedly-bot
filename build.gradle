@@ -1,0 +1,31 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.31'
+    id 'application'
+}
+
+group = 'ru.sigeezmund'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    def ktor_version = "1.5.4"
+    def telegram_version = '5.2.0'
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-cio:$ktor_version"
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation group: 'org.telegram', name: 'telegrambots', version: telegram_version
+    implementation group: 'org.telegram', name: 'telegrambotsextensions', version: telegram_version
+    implementation "ch.qos.logback:logback-classic:1.2.3"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+application {
+    mainClassName = 'MainKt'
+}
