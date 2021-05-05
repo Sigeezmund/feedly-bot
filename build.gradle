@@ -11,6 +11,8 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+task stage(dependsOn: ['build', 'clean'])
+
 dependencies {
     def ktor_version = "1.5.4"
     def telegram_version = '5.2.0'
