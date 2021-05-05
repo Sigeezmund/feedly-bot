@@ -32,8 +32,8 @@ class FeedlyTelegramLongPollingCommandBotImpl(
                 add(KeyboardButton(FRESH_BUTTON_KEYBOARD))
             }
         )
-        if (!!updates.isNullOrEmpty()) {
-            for (update in updates!!) {
+        if (!updates.isNullOrEmpty()) {
+            for (update in updates) {
                 execute(SendMessage().apply {
                     replyMarkup = keyBoard
                     text = "Hi"
