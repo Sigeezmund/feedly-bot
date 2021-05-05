@@ -50,4 +50,5 @@ jar {
                 'Main-Class': 'MainKt'
         )
     }
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
 }
