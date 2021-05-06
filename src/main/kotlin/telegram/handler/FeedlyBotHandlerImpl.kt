@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession
 import telegram.bot.feedly.FeedlyTelegramLongPollingCommandBotImpl
 import telegram.bot.feedly.comand.FreshNewsBotCommandImpl
+import telegram.bot.feedly.comand.StartFeedlyCommandImpl
 
 class FeedlyBotHandlerImpl : BotHandler {
 
@@ -21,6 +22,7 @@ class FeedlyBotHandlerImpl : BotHandler {
 
     override fun startBot() {
         feedlyBot.register(FreshNewsBotCommandImpl(secret))
+        feedlyBot.register(StartFeedlyCommandImpl())
         telegramBotsApi.registerBot(feedlyBot)
     }
 }

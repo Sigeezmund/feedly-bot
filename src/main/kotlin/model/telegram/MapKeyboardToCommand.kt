@@ -9,7 +9,7 @@ class MapKeyboardToCommand {
             FRESH_BUTTON_KEYBOARD to FRESH_COMMAND
         )
 
-        fun inCommandMap(keyboardCommand: String) = commandMap.containsKey(keyboardCommand)
+        fun isInCommandMap(keyboardCommand: String) = commandMap.containsKey(keyboardCommand)
 
         fun getCommandByKeyboardText(keyboardCommand: String) = commandMap[keyboardCommand]
     }
@@ -18,6 +18,7 @@ class MapKeyboardToCommand {
 class CommandConst {
     companion object {
         const val FRESH_COMMAND = "fresh"
+        const val START_COMMAND = "start"
         const val FRESH_BUTTON_KEYBOARD = "Give Some Fresh News"
     }
 }
