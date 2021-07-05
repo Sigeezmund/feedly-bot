@@ -35,7 +35,12 @@ class FeedlyClient(secretProperties: SecretProperties) {
                 parameter("unreadOnly", "true")
                 parameter("backfill", "true")
             }
-        return gson.fromJson(response.readText(), News::class.java)
+        if(response.status == HttpStatusCode.OK) {
+            return gson.fromJson(response.readText(), News::class.java)
+        } else {
+            error("Have response wrong answer [{${response.status}}]")
+        }
+
     }
 
     suspend fun markNewsRead(newsItem: List<NewsItem>) {
