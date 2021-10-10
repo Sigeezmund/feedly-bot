@@ -25,7 +25,7 @@ clean {
 }
 
 dependencies {
-    def ktor_version = "1.5.4"
+    def ktor_version = "1.6.4"
     def telegram_version = '5.2.0'
     implementation "io.ktor:ktor-client-core:$ktor_version"
     implementation "io.ktor:ktor-client-cio:$ktor_version"
