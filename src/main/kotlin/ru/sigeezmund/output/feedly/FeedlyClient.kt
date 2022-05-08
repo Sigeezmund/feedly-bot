@@ -31,7 +31,7 @@ class FeedlyClient(secretProperties: SecretProperties) {
                 headers.append(Authorization, "Bearer $feedlyAccessToken")
                 parameter("boostMustRead", "true")
                 parameter("hours", "10")
-                parameter("count", "3")
+                parameter("count", "10")
                 parameter("unreadOnly", "true")
                 parameter("backfill", "true")
             }
