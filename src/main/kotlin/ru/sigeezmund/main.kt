@@ -1,5 +1,5 @@
-import telegram.handler.BotHandler
-import telegram.handler.FeedlyBotHandlerImpl
+import ru.sigeezmund.output.telegram.handler.BotHandler
+import ru.sigeezmund.output.telegram.handler.FeedlyBotHandlerImpl
 
 
 private val botHandler: BotHandler = FeedlyBotHandlerImpl()
