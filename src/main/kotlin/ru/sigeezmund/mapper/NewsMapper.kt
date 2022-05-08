@@ -1,13 +1,13 @@
-package mapper
+package ru.sigeezmund.mapper
 
-import model.feedly.NewsItem
-import model.telegram.NewsTelegramDto
+import ru.sigeezmund.model.FeedlyNewsItem
+import ru.sigeezmund.model.TelegramNewsDto
 
 class NewsMapper {
 
-    fun getTelegramNewsDto(newsItems: List<NewsItem>): List<NewsTelegramDto> =
+    fun getTelegramNewsDto(newsItems: List<FeedlyNewsItem>): List<TelegramNewsDto> =
         newsItems.map { newsItem ->
-            NewsTelegramDto(
+            TelegramNewsDto(
                 newsTitle = newsItem.title,
                 sourceName = newsItem.origin.title,
                 href = newsItem.canonicalUrl ?: newsItem.ampUrl ?: newsItem.alternate[0].href,

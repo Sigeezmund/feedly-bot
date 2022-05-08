@@ -1,4 +1,4 @@
-package telegram.auth
+package ru.sigeezmund.output.telegram.auth
 
 import org.telegram.telegrambots.meta.api.objects.User
 
@@ -9,7 +9,7 @@ class AuthorizationService {
 
         fun checkUser(user: User?) {
             if ((user == null) && (listOfAvailableUser.contains(user?.userName))) {
-                throw RuntimeException("Unkonw User")
+                throw RuntimeException("Unknown User")
             }
         }
     }

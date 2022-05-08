@@ -1,11 +1,11 @@
-package model.feedly
+package ru.sigeezmund.model
 
-data class News(
+data class FeedlyNewsDto(
     val id: String,
-    val items: List<NewsItem>
+    val items: List<FeedlyNewsItem>
 )
 
-data class NewsItem(
+data class FeedlyNewsItem(
     val alternate: List<Alternate>,
     val ampUrl: String,
     val canonicalUrl: String,

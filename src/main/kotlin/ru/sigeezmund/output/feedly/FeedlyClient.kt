@@ -1,4 +1,4 @@
-package feedly
+package ru.sigeezmund.output.feedly
 
 import com.google.gson.Gson
 import io.ktor.client.HttpClient
@@ -10,10 +10,10 @@ import io.ktor.client.statement.readText
 import io.ktor.http.HttpHeaders.Authorization
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
-import model.feedly.MarkArticle
-import model.feedly.News
-import model.feedly.NewsItem
-import model.system.SecretProperties
+import ru.sigeezmund.model.FeedlyNewsDto
+import ru.sigeezmund.model.FeedlyNewsItem
+import ru.sigeezmund.model.feedly.MarkArticleOnFeedlyDto
+import ru.sigeezmund.model.SecretProperties
 
 class FeedlyClient(secretProperties: SecretProperties) {
 
@@ -24,7 +24,7 @@ class FeedlyClient(secretProperties: SecretProperties) {
         expectSuccess = false
     }
 
-    suspend fun getTopNewsByDay(): News {
+    suspend fun getTopNewsByDay(): FeedlyNewsDto {
         val response: HttpResponse =
             client.request("$FEEDLY_URL/$FEEDLY_VERSION/mixes/user%2F$userId%2Fcategory%2Fglobal.all/contents") {
                 method = HttpMethod.Get
@@ -36,14 +36,14 @@ class FeedlyClient(secretProperties: SecretProperties) {
                 parameter("backfill", "true")
             }
         if(response.status == HttpStatusCode.OK) {
-            return gson.fromJson(response.readText(), News::class.java)
+            return gson.fromJson(response.readText(), FeedlyNewsDto::class.java)
         } else {
             error("Have response wrong answer [{${response.status}}]")
         }
 
     }
 
-    suspend fun markNewsRead(newsItem: List<NewsItem>) {
+    suspend fun markNewsRead(newsItem: List<FeedlyNewsItem>) {
         val entityId = mutableListOf<String>()
         for (news in newsItem) {
             entityId.add(news.id)
@@ -52,7 +52,7 @@ class FeedlyClient(secretProperties: SecretProperties) {
             client.request("$FEEDLY_URL/$FEEDLY_VERSION/markers") {
                 method = HttpMethod.Post
                 headers.append(Authorization, "Bearer $feedlyAccessToken")
-                body = gson.toJson(MarkArticle(entityId))
+                body = gson.toJson(MarkArticleOnFeedlyDto(entityId))
             }
         if (response.status != HttpStatusCode.OK) {
             print("Cannot mark news [$entityId] like read")

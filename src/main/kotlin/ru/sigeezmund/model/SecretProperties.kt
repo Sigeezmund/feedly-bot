@@ -1,4 +1,4 @@
-package model.system
+package ru.sigeezmund.model
 
 data class SecretProperties(
     val telegramToken: String,

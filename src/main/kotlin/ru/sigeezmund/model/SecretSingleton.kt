@@ -1,4 +1,4 @@
-package model.system
+package ru.sigeezmund.model
 
 object SecretSingleton {
 
